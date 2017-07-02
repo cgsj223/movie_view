@@ -25,7 +25,7 @@
           暂无评论
         </div>
       </div>
-      <pagesBar v-if="count" :count="count" :pageSize="pageSize" :bar_number="bar_number" @pageChange="getComments"></pagesBar>
+      <pagesBar v-if="count" ref="pagesBar" :count="count" :pageSize="pageSize" :bar_number="bar_number" @pageChange="getComments"></pagesBar>
       <div class="input_wrapper">
         <form class="input" @submit='sendData' action="/comment" method="post">
           <textarea name="content" v-model='inputComment' class="content" :disabled="locked" spellcheck="false"></textarea>
@@ -114,7 +114,13 @@ export default {
         }).then(response=>{
           if(response.body.code==5000){
             alert("评论成功")
-            this.comments.pop()
+            this.count++
+            this.$nextTick(function(){
+              this.$refs.pagesBar.renderPageNum()
+            })
+            if(this.comments.length>=5){
+              this.comments.pop()
+            }
             this.comments.unshift({
               content,
               time:time.toLocaleString(),

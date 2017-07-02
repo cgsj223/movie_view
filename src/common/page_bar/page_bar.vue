@@ -26,22 +26,26 @@ export default{
   },
 
   mounted:function(){
-    if(this.count<=this.pageSize*this.bar_number){
-      let num=Math.ceil(this.count/this.pageSize)
-      for(let i=1;i<=num;i++){
-        this.pages.push(i)
-      }
-    }else{
-      for(let j=1;j<=this.bar_number;j++){
-        this.pages.push(j)
-      }
-    }
+    this.renderPageNum()
   },
   methods:{
+    renderPageNum:function(){
+      this.pages=[]
+      if(this.count<=this.pageSize*this.bar_number){
+        let num=Math.ceil(this.count/this.pageSize)
+        for(let i=1;i<=num;i++){
+          this.pages.push(i)
+        }
+      }else{
+        for(let j=1;j<=this.bar_number;j++){
+          this.pages.push(j)
+        }
+      }
+      this.$nextTick()
+    },
     handlePage:function(e){
       if(e.target.tagName=='SPAN'){
         let attr=e.target.getAttribute('pageData')
-
         switch (attr){
           case 'first':
           this.handleBtnFlag('first')
