@@ -164,7 +164,7 @@ export default {
     .userLogin
       display:inline-block
       position:absolute
-      left:1000px
+      right:100px
       height:60px
       line-height:60px
       width:300px
