@@ -105,7 +105,7 @@ export default {
     .login_reg
       display:inline-block
       position:absolute
-      left:1000px
+      right:200px
       height:60px
       width:140px
       vertical-align:middle
