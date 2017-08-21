@@ -107,7 +107,7 @@ export default {
       position:absolute
       right:200px
       height:60px
-      width:140px
+      width:160px
       vertical-align:middle
       color:#00a1d6
       font-size:20px
